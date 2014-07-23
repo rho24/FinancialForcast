@@ -27,6 +27,9 @@ namespace FiniancialForcast
                       "~/Scripts/angular.js",
                       "~/Scripts/angular-route.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+                      "~/Scripts/underscore.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

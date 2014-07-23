@@ -2,10 +2,17 @@
     <input type="button" ng-click="addCalc()" value="Add Calc">
 </div>
 <div class="row">
+    <input type="button" ng-click="refreshScenarios()" value="RefreshScenarios">
+    <ul ng-repeat="scenario in scenarios">
+        <li>{{ scenario.id }} - {{scenario.name}}</li>
+    </ul>
+</div>
+
+<div class="row">
     <div ng-repeat="calc in calculators">
         <div class="col-md-4">
             <div class="calc">
-                <h2>Calculator</h2>
+                <h2>Calculator - {{ calc.data.name }}</h2>
                 <form role="form" class="form-horizontal">
                     <div class="form-group  form-group-sm">
                         <label for="dayRate" class="col-sm-6 control-label">Day rate</label>

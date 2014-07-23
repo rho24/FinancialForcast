@@ -6,13 +6,15 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FiniancialForcast.Models;
 
 namespace FiniancialForcast
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
-        {
+        protected void Application_Start() {
+            FFContext.Initialize();
+            AutofacConfig.RegisterDependencies();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
