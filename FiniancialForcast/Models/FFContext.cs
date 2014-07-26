@@ -18,10 +18,28 @@ namespace FiniancialForcast.Models
 
     public class FFContextInitializer : DropCreateDatabaseIfModelChanges<FFContext>
     {
-        protected override void Seed(FFContext context) {
+        protected override void Seed(FFContext context)
+        {
             context.Scenarios.Add(
-                new Scenario {
+                new Scenario
+                {
                     Name = "test",
+                    DayRate = 350,
+                    WeeksPerYear = 40,
+                    AgencyPercentage = 15,
+                    PayeSalary = 10000,
+                    VatFlatRatePercentage = 14.5m,
+                    VatFirstYear = true,
+                    DividendPercentage = 50,
+                    YearlyCosts = 2000,
+                    DailyExpenses = 0,
+                    YearlyExpenses = 0,
+                    Pension = 10000
+                });
+            context.Scenarios.Add(
+                new Scenario
+                {
+                    Name = "testing2",
                     DayRate = 350,
                     WeeksPerYear = 40,
                     AgencyPercentage = 15,

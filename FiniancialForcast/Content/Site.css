@@ -19,3 +19,5 @@ textarea {
 .tax {
         color: #f00;
       }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

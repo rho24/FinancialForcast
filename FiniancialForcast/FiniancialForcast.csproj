@@ -186,7 +186,9 @@
     <Compile Include="Queries\RetrieveScenariosQuery.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AngularTemplates\CalculatorForm.html" />
     <Content Include="AngularTemplates\Calculator.html" />
+    <Content Include="AngularTemplates\CalculatorPage.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />

@@ -1,11 +1,11 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 myApp.config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'AngularTemplates/Calculator.html',
+                templateUrl: 'AngularTemplates/CalculatorPage.html',
                 controller: 'CalculatorController'
             }).
             otherwise({
@@ -82,6 +82,13 @@ myApp.controller('CalculatorController', [
         $scope.refreshScenarios();
     }
 ]);
+
+myApp.directive('calculatorform', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'AngularTemplates/CalculatorForm.html'
+    }
+});
 
 function Calc(data) {
     this.data = data;
