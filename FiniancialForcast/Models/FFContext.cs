@@ -24,25 +24,23 @@ namespace FiniancialForcast.Models
                 new Scenario
                 {
                     Name = "test",
-                    DayRate = 350,
+                    DayRate = 325,
                     WeeksPerYear = 40,
-                    AgencyPercentage = 15,
                     PayeSalary = 10000,
                     VatFlatRatePercentage = 14.5m,
-                    VatFirstYear = true,
+                    VatFirstYear = false,
                     DividendPercentage = 50,
                     YearlyCosts = 2000,
                     DailyExpenses = 0,
                     YearlyExpenses = 0,
-                    Pension = 10000
+                    PensionPercentage = 15
                 });
             context.Scenarios.Add(
                 new Scenario
                 {
                     Name = "testing2",
-                    DayRate = 350,
+                    DayRate = 250,
                     WeeksPerYear = 40,
-                    AgencyPercentage = 15,
                     PayeSalary = 10000,
                     VatFlatRatePercentage = 14.5m,
                     VatFirstYear = true,
@@ -50,7 +48,7 @@ namespace FiniancialForcast.Models
                     YearlyCosts = 2000,
                     DailyExpenses = 0,
                     YearlyExpenses = 0,
-                    Pension = 10000
+                    PensionPercentage = 15
                 });
         }
     }
@@ -64,8 +62,6 @@ namespace FiniancialForcast.Models
         public decimal DayRate { get; set; }
 
         public int WeeksPerYear { get; set; }
-
-        public decimal AgencyPercentage { get; set; }
 
         public decimal PayeSalary { get; set; }
 
@@ -81,6 +77,6 @@ namespace FiniancialForcast.Models
 
         public decimal YearlyExpenses { get; set; }
 
-        public decimal Pension { get; set; }
+        public decimal PensionPercentage { get; set; }
     }
 }

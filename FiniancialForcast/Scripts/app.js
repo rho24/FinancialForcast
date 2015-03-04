@@ -57,17 +57,16 @@ myApp.controller('CalculatorController', [
         $scope.addCalc = function() {
             $scope.calculators.push(new Calc({
                 name: 'test2-client',
-                dayRate: 350,
+                dayRate: 325,
                 weeksPerYear: 40,
-                agencyPercentage: 15,
                 payeSalary: 10000,
                 vatFlatRatePercentage: 14.5,
-                vatFirstYear: true,
+                vatFirstYear: false,
                 dividendPercentage: 50,
                 yearlyCosts: 2000,
                 dailyExpenses: 0,
                 yearlyExpenses: 0,
-                pension: 10000
+                pensionPercentage: 15
             }));
         };
         $scope.refreshScenarios = function() {
@@ -93,7 +92,7 @@ myApp.directive('calculatorform', function () {
 function Calc(data) {
     this.data = data;
 
-    this.grossIncome = function() { return this.data.dayRate * this.data.weeksPerYear * 5 * ((100 - this.data.agencyPercentage) / 100); };
+    this.grossIncome = function() { return this.data.dayRate * this.data.weeksPerYear * 5; };
 
     this.totalExpenses = function() { return (5 * this.data.weeksPerYear * this.data.dailyExpenses) + this.data.yearlyExpenses; };
 
@@ -103,8 +102,9 @@ function Calc(data) {
         (this.data.vatFlatRatePercentage - (this.data.vatFirstYear ? 1 : 0)) / 100);
     };
 
-    this.turnover = function() { return this.grossIncome() + this.vatFlatRateSaving(); };
-    this.preTaxProfit = function() { return this.turnover() - this.data.payeSalary - this.data.yearlyCosts - this.data.pension - this.totalExpenses(); };
+    this.turnover = function () { return this.grossIncome() + this.vatFlatRateSaving(); };
+    this.pension = function () { return this.grossIncome() * this.data.pensionPercentage / 100; }
+    this.preTaxProfit = function() { return this.turnover() - this.data.payeSalary - this.data.yearlyCosts - this.pension() - this.totalExpenses(); };
     this.corporationTax = function() { return this.preTaxProfit() * 0.20; };
     this.employersNics = function() {
         var nics = (this.data.payeSalary > 7956 ? (this.data.payeSalary - 7956) * 0.138 : 0);

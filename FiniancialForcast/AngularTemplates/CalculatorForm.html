@@ -14,12 +14,6 @@
                 </div>
             </div>
             <div class="form-group  form-group-sm">
-                <label for="agencyPercentage" class="col-sm-3 control-label">Agency %</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" name="agencyPercentage" ng-model="calc.data.agencyPercentage">
-                </div>
-            </div>
-            <div class="form-group  form-group-sm">
                 <label for="payeSalary" class="col-sm-3 control-label">PAYE salary</label>
                 <div class="col-sm-4">
                     <input type="number" class="form-control" name="payeSalary" ng-model="calc.data.payeSalary">
@@ -61,9 +55,9 @@
                 </div>
             </div>
             <div class="form-group  form-group-sm">
-                <label for="pension" class="col-sm-3 control-label">Pension</label>
+                <label for="pensionPercentage" class="col-sm-3 control-label">Pension percentage</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" name="pension" ng-model="calc.data.pension">
+                    <input type="number" class="form-control" name="pensionPercentage" ng-model="calc.data.pensionPercentage">
                 </div>
             </div>
         </form>
@@ -79,15 +73,15 @@
             <dt>Pre tax profit</dt>
             <dd>{{ calc.preTaxProfit() }}</dd>
             <dt>Corporation tax</dt>
-            <dd>{{ calc.corporationTax() }}</dd>
+            <dd class="tax">{{ calc.corporationTax() }}</dd>
             <dt>Employers NICs</dt>
-            <dd>{{ calc.employersNics() }}</dd>
+            <dd class="tax">{{ calc.employersNics() }}</dd>
             <dt>Post tax profit</dt>
             <dd>{{ calc.postTaxProfit() }}</dd>
-            <dd></dd>
+            <hr/>
             <dt>Employees NICs</dt>
-            <dd>{{ calc.employeesNics() }}</dd>
-            <dd></dd>
+            <dd class="tax">{{ calc.employeesNics() }}</dd>
+            <hr/>
             <dt>Dividend net</dt>
             <dd>{{ calc.dividendNet() }}</dd>
             <dt>Dividend gross</dt>
@@ -95,8 +89,8 @@
             <dt>Taxable gross income</dt>
             <dd>{{ calc.taxableGrossIncome() }}</dd>
             <dt>Dividend tax</dt>
-            <dd>{{ calc.dividendTax() }}</dd>
-            <dd></dd>
+            <dd class="tax">{{ calc.dividendTax() }}</dd>
+            <hr/>
             <dt>PAYE salary</dt>
             <dd>{{ calc.data.payeSalary }}</dd>
             <dt>Total expenses</dt>
@@ -109,7 +103,7 @@
             <dd>{{ calc.dividendNet() }}</dd>
             <dt>Dividend tax</dt>
             <dd class="tax">{{ calc.dividendTax() }}</dd>
-            <dd></dd>
+            <hr/>
             <dt>Take home pay</dt>
             <dd>{{ calc.takeHomePay() }}</dd>
             <dt>(Per month)</dt>
@@ -117,9 +111,7 @@
             <dt>Profit left in company</dt>
             <dd>{{ calc.profitLeftInCompany() }}</dd>
             <dt>Pension</dt>
-            <dd>{{ calc.data.pension }}</dd>
-            <dt>(% of gross income)</dt>
-            <dd>{{ calc.data.pension * 100 / calc.grossIncome() }}%</dd>
+            <dd>{{ calc.pension() }}</dd>
         </dl>
     </div>
 </div>

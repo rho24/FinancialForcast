@@ -1,13 +1,7 @@
 ﻿<div class="row">
     <input type="button" ng-click="addCalc()" value="Add Calc">
-</div>
-<div class="row">
     <input type="button" ng-click="refreshScenarios()" value="RefreshScenarios">
-    <ul ng-repeat="scenario in scenarios">
-        <li>{{ scenario.id }} - {{scenario.name}}</li>
-    </ul>
 </div>
-
 
 <tabset>
     <tab ng-repeat="calc in calculators" heading="Calculator - {{calc.data.name}}">
