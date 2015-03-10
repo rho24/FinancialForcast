@@ -85,10 +85,14 @@ myApp.controller('CalculatorPageController', [
 myApp.controller('CalculatorController', [
     '$scope', function ($scope) {
         var calc = $scope.calc;
-        $scope.breakdownData = [
-            calc.profitLeftInCompany(), calc.pension(), calc.takeHomePay(), calc.totalTax()];
-        $scope.breakdownLabels = ['Company', 'Pension', 'Salary', 'Tax'];
-        $scope.breakdownTotal = _.reduce($scope.breakdownData, function(a, b) { return a + b; }, 0);
+        $scope.updateGraph = function() {
+            $scope.breakdownData = [
+                calc.profitLeftInCompany(), calc.pension(), calc.takeHomePay(), calc.totalTax() - calc.vatFlatRateSaving(), calc.adminCosts()
+            ];
+            $scope.breakdownLabels = ['Company', 'Pension', 'Salary', 'Tax', 'Admin'];
+            $scope.breakdownTotal = _.reduce($scope.breakdownData, function(a, b) { return a + b; }, 0);
+        };
+        $scope.updateGraph();
     }
 ]);
 
@@ -152,7 +156,8 @@ function Calc(data) {
         return taxabledGrossDividend * (32.5 - 10) / 100;
     };
 
-    this.takeHomePay = function() { return this.data.payeSalary + this.dividendNet() + this.totalExpenses() - this.payeTax() - this.employeesNics() - this.dividendTax(); };
+    this.adminCosts = function() { return this.data.yearlyCosts + this.totalExpenses(); };
+    this.takeHomePay = function() { return this.data.payeSalary + this.dividendNet() - this.payeTax() - this.employeesNics() - this.dividendTax(); };
     this.profitLeftInCompany = function() { return this.postTaxProfit() - this.dividendNet(); };
     this.totalTax = function() {
         return this.corporationTax() +

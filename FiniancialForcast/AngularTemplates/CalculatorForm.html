@@ -105,6 +105,8 @@
                 <dt>Dividend tax</dt>
                 <dd class="tax">{{ calc.dividendTax() }}</dd>
                 <hr/>
+                <dt>Admin costs</dt>
+                <dd class="tax">{{ calc.adminCosts() }}</dd>
                 <dt>Take home pay</dt>
                 <dd>{{ calc.takeHomePay() }}</dd>
                 <dt>(Per month)</dt>
@@ -118,6 +120,7 @@
         <tab heading="Graphs" select="graphsVisible = true" deselect="graphsVisible = false">
             <div class="col-md-6">
                 <h2>Breakdown</h2>
+                <button class="btn" ng-click="updateGraph()">Refresh</button>
                 <div ng-if="graphsVisible">
                     <canvas class="chart chart-pie"
                             data="$parent.breakdownData"
