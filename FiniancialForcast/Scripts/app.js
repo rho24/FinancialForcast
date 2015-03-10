@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'chart.js']);
 
 myApp.config([
     '$routeProvider',
@@ -6,7 +6,7 @@ myApp.config([
         $routeProvider.
             when('/', {
                 templateUrl: 'AngularTemplates/CalculatorPage.html',
-                controller: 'CalculatorController'
+                controller: 'CalculatorPageController'
             }).
             otherwise({
                 redirectTo: '/'
@@ -43,7 +43,7 @@ myApp.
         };
     });
 
-myApp.controller('CalculatorController', [
+myApp.controller('CalculatorPageController', [
     '$scope', 'scenarioData', function($scope, scenarioData) {
         
 
@@ -82,9 +82,20 @@ myApp.controller('CalculatorController', [
     }
 ]);
 
+myApp.controller('CalculatorController', [
+    '$scope', function ($scope) {
+        var calc = $scope.calc;
+        $scope.breakdownData = [
+            calc.profitLeftInCompany(), calc.pension(), calc.takeHomePay(), calc.totalTax()];
+        $scope.breakdownLabels = ['Company', 'Pension', 'Salary', 'Tax'];
+        $scope.breakdownTotal = _.reduce($scope.breakdownData, function(a, b) { return a + b; }, 0);
+    }
+]);
+
 myApp.directive('calculatorform', function () {
     return {
         restrict: 'E',
+        controller: 'CalculatorController',
         templateUrl: 'AngularTemplates/CalculatorForm.html'
     }
 });
@@ -143,4 +154,11 @@ function Calc(data) {
 
     this.takeHomePay = function() { return this.data.payeSalary + this.dividendNet() + this.totalExpenses() - this.payeTax() - this.employeesNics() - this.dividendTax(); };
     this.profitLeftInCompany = function() { return this.postTaxProfit() - this.dividendNet(); };
+    this.totalTax = function() {
+        return this.corporationTax() +
+            this.employersNics() +
+            this.payeTax() +
+            this.employeesNics() +
+            this.dividendTax();
+    }
 }

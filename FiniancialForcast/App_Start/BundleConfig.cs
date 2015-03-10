@@ -27,13 +27,18 @@ namespace FiniancialForcast
                       "~/Scripts/angular.js",
                       "~/Scripts/angular-route.js",
                       "~/Scripts/angular-ui/ui-bootstrap.js",
-                      "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
+                      "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
+                      "~/Scripts/angular-chart/angular-chart.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
                       "~/Scripts/underscore.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chartjs").Include(
+                      "~/Scripts/Chart.js-1.0.2/Chart.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Scripts/angular-chart/angular-chart.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
